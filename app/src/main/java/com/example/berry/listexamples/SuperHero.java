@@ -2,11 +2,12 @@ package com.example.berry.listexamples;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * Created by per6 on 9/27/17.
  */
-public class SuperHero implements Parcelable {
+public class SuperHero implements Parcelable, Comparable<SuperHero> {
     private String name;
     private String description;
     public int resourceId;
@@ -26,7 +27,7 @@ public class SuperHero implements Parcelable {
         this.resourceId = resourceId;
     }
 
-    public SuperHero(String name, String description, int resourceId, int ranking) {
+    public SuperHero(String name, String description, int ranking, int resourceId) {
         this.name = name;
         this.description = description;
         this.resourceId = resourceId;
@@ -94,4 +95,9 @@ public class SuperHero implements Parcelable {
             return new SuperHero[size];
         }
     };
+
+    @Override
+    public int compareTo(@NonNull SuperHero other) {
+        return this.ranking - other.ranking;
+    }
 }

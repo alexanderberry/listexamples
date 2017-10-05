@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
@@ -52,6 +55,12 @@ public class MainActivity extends AppCompatActivity{
         heroes.add(new SuperHero("Datman", "That guy standing next to you.",150, R.drawable.man));
         heroes.add(new SuperHero("Chi", "Defeats experienced programmers with bad commit messages.",2,R.drawable.chi));
         heroes.add(new SuperHero("Ken", "Flies a drone into the enemy.",20, R.drawable.ken));
+        Collections.sort(heroes, new Comparator<SuperHero>() {
+            @Override
+            public int compare(SuperHero superHero, SuperHero t1) {
+                return superHero.getName().toLowerCase().compareTo(t1.getName().toLowerCase());
+            }
+        });
     }
 
     @Override
@@ -59,6 +68,13 @@ public class MainActivity extends AppCompatActivity{
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
     }
 
     @Override
@@ -80,5 +96,26 @@ public class MainActivity extends AppCompatActivity{
                 return super.onContextItemSelected(item);
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.name_sort:
+                Collections.sort(heroes, new Comparator<SuperHero>() {
+                    @Override
+                    public int compare(SuperHero superHero, SuperHero t1) {
+                        return superHero.getName().toLowerCase().compareTo(t1.getName().toLowerCase());
+                    }
+                });
+                adapter.notifyDataSetChanged();
+                return true;
+            case R.id.rank_sort:
+                Collections.sort(heroes);
+                adapter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

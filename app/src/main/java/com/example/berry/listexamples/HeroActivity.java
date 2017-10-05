@@ -26,7 +26,7 @@ public class HeroActivity extends AppCompatActivity {
         back = (Button) findViewById(R.id.button_back);
         image = (ImageView) findViewById(R.id.imageView);
         nameText.setText(hero.getName());
-        descriptionText.setText(hero.getDescription());
+        descriptionText.setText("Rank " + hero.getRanking() + ". " + hero.getDescription());
         image.setImageDrawable(getDrawable(hero.getResourceId()));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
