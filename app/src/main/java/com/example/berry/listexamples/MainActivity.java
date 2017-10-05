@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity{
     private List<SuperHero> heroes;
     private ListView heroListView;
     private ArrayAdapter<SuperHero> adapter;
+    private HeroesDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
