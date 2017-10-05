@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 public class HeroActivity extends AppCompatActivity {
 
-    private String name;
-    private String description;
+    private SuperHero hero;
     private TextView nameText;
     private TextView descriptionText;
     private ImageView image;
@@ -21,15 +20,14 @@ public class HeroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero);
-        name = getIntent().getStringExtra("heroName");
-        description = getIntent().getStringExtra("heroDescription");
+        hero = getIntent().getParcelableExtra("hero");
         nameText = (TextView) findViewById(R.id.hero_text);
         descriptionText = (TextView) findViewById(R.id.description_text);
         back = (Button) findViewById(R.id.button_back);
         image = (ImageView) findViewById(R.id.imageView);
-        nameText.setText(name);
-        descriptionText.setText(description);
-        image.setImageDrawable(getDrawable(getIntent().getIntExtra("image",R.drawable.bart)));
+        nameText.setText(hero.getName());
+        descriptionText.setText(hero.getDescription());
+        image.setImageDrawable(getDrawable(hero.getResourceId()));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

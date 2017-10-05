@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(MainActivity.this, heroes.get(i).getName(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, HeroActivity.class);
-                intent.putExtra("heroName", heroes.get(i));
-                intent.putExtra("heroDescription", heroes.get(i));
-                intent.putExtra("image", heroes.get(i));
-                intent.putExtra("ranking", heroes.get(i));
+                intent.putExtra("hero", heroes.get(i));
                 startActivity(intent);
             }
         });
