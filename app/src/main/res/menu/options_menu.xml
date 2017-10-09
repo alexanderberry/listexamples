@@ -4,8 +4,12 @@
 
     <item
         android:id="@+id/name_sort"
-        android:title="Sort by name" />
+        android:icon="@drawable/ic_wb_incandescent_black_24dp"
+        android:title="Sort by name"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/rank_sort"
-        android:title="Sort by ranking" />
+        android:icon="@drawable/ic_fingerprint_black_24dp"
+        android:title="Sort by ranking"
+        app:showAsAction="ifRoom" />
 </menu>
